@@ -26,7 +26,8 @@
       display: inline-block;
       font-size: var(--switch-font-size);
       cursor: pointer;
-      user-select: none;
+      z-index: 2;
+
       @m left {
         i {
           left: 6px;
@@ -49,9 +50,21 @@
 
     @e input {
       display: none;
-      &:checked + .el-switch__core {
-        border-color: var(--switch-on-color);
-        background-color: var(--switch-on-color);
+
+      &.allow-focus {
+        z-index: 0;
+        display: initial;
+        position: absolute;
+        left: 0;
+        top: 0;
+        outline: none;
+        opacity: 0;
+
+        &:focus {
+          + .el-switch__core {
+            box-shadow: 0 0 2px var(--switch-focus-border);
+          }
+        }
       }
     }
 
@@ -67,6 +80,7 @@
       background: var(--switch-off-color);
       cursor: pointer;
       transition: border-color .3s, background-color .3s;
+      z-index: 1;
 
       & .el-switch__button {
         position: absolute 0 * * 0;
@@ -74,6 +88,13 @@
         transition: transform .3s;
         size: var(--switch-button-size);
         background-color: var(--color-white);
+      }
+    }
+
+    @when checked {
+      .el-switch__core {
+        border-color: var(--switch-on-color);
+        background-color: var(--switch-on-color);
       }
     }
 
@@ -89,11 +110,6 @@
         & ~ .el-switch__label * {
           color: var(--switch-disabled-text-color) !important;
         }
-      }
-
-      .el-switch__input:checked + .el-switch__core {
-        border-color: var(--switch-disabled-color);
-        background-color: var(--switch-disabled-color);
       }
     }
 

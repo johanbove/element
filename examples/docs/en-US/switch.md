@@ -1,3 +1,11 @@
+<style>
+  .demo-box.demo-switch {
+    .el-switch {
+      margin: 20px 20px 20px 0;
+    }
+  }
+</style>
+
 <script>
   export default {
     data() {
@@ -49,15 +57,15 @@ Switch is used for switching between two opposing states.
 :::demo You can set `on-value` and `off-value` attributes. They both receive a `Boolean`, `String` or `Number` typed value.
 
 ```html
- <el-tooltip :content="'Switch value: ' + value3" placement="top">
-    <el-switch
-      v-model="value3"
-      on-color="#13ce66"
-      off-color="#ff4949"
-      on-value="100"
-      off-value="0">
-    </el-switch>
-  </el-tooltip>
+<el-tooltip :content="'Switch value: ' + value3" placement="top">
+  <el-switch
+    v-model="value3"
+    on-color="#13ce66"
+    off-color="#ff4949"
+    on-value="100"
+    off-value="0">
+  </el-switch>
+</el-tooltip>
 
 <script>
   export default {
@@ -114,10 +122,13 @@ on-value  | switch value when in `on` state | boolean / string / number | — | 
 off-value  | switch value when in `off` state | boolean / string / number | — | false
 on-color | background color when in `on` state | string | — | #20A0FF
 off-color | background color when in `off` state | string | — | #C0CCDA
-name| input name of Switch | string | — | —
+name | input name of Switch | string | — | —
+allow-focus | allow `focus` and `blur` events on the input | boolean | — | false
 
 ### Events
 
  Event Name | Description | Parameters
 ---- | ----| ----
 change | triggers when value changes | value after changing
+blur | triggers on blur (if `allow-focus` is true) | event: Event
+focus | triggers on focus (if `allow-focus` is true) | event: Event

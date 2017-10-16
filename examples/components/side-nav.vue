@@ -91,6 +91,10 @@
       line-height: 26px;
       margin-top: 10px;
     }
+    
+    #code-sponsor-widget {
+      margin: 50px 0 0 -20px;
+    }
   }
   .nav-dropdown-list {
     width: 120px;
@@ -126,9 +130,10 @@
     </el-dropdown>
     <ul>
       <li class="nav-item" v-for="item in data">
-        <a v-if="!item.path" @click="expandMenu">{{item.name}}</a>
+        <a v-if="!item.path && !item.href" @click="expandMenu">{{item.name}}</a>
+        <a v-if="item.href" :href="item.href" target="_blank">{{item.name}}</a>
         <router-link
-          v-else
+          v-if="item.path"
           active-class="active"
           :to="base + item.path"
           exact
@@ -164,6 +169,7 @@
         </template>
       </li>
     </ul>
+    <div id="code-sponsor-widget"></div>
   </div>
 </template>
 <script>
